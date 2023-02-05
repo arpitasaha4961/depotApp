@@ -1,6 +1,7 @@
 require "application_system_test_case"
 
 class OrdersTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
   setup do
     @order = orders(:one)
   end
@@ -15,7 +16,8 @@ class OrdersTest < ApplicationSystemTestCase
     click_on "New Order"
 
     fill_in "Address", with: @order.address
-    fill_in "Emailpay type", with: @order.emailpay_type
+    fill_in "Email", with: @order.email
+    fill_in "Pay_type", with: @order.pay_type
     fill_in "Name", with: @order.name
     click_on "Create Order"
 
